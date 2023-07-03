@@ -1,7 +1,5 @@
-        <?php if($this->session->userdata('logged_in')) : ?>
-            <h1>"Welcome to <?= $this->session->userdata('user_level'); ?>"</h1>
-          <?php endif; ?>
-            <table class="table table-striped table-bordered">
+        
+            <table class="table table-striped table-bordered table-hover" id="myTable">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -13,7 +11,9 @@
                         <th scope="col">Serial No.</th>
                         <th scope="col">New Custodian</th>
                         <th scope="col">Date</th>
-                        <th scope="col" colspan="2">Action</th>
+                        <?php if($this->session->userdata('logged_in')) : ?>
+                        <th scope="col">Action</th>
+                        <?php endif; ?>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,12 +31,14 @@
                         <td><?= $product['new_custodian']; ?></td>
                         
                         <td><?= $prod; ?></td>
+                        <?php if($this->session->userdata('logged_in')) : ?>
                         <td>
                             <?php echo form_open('/products/delete/'.$product['id']); ?>
                                 <a href="<?php echo base_url(); ?>products/edit/<?php echo $product['id']; ?>" class="btn btn-primary"><i class="fa-regular fa-pen-to-square"></i> Edit</a>
                                 <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Delete</button>
                             </form>
                         </td>
+                        <?php endif; ?>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>

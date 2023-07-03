@@ -45,7 +45,7 @@
 			$result = $this->db->get('users');
 
 			if($result->num_rows() == 1){
-				return $result->result_array();
+				return $result->row_array();
 			} else {
 				return false;
 			}

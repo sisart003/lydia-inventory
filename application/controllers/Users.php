@@ -69,12 +69,14 @@ class Users extends CI_Controller {
 
 				// Login user
 				$user_id = $this->user_model->login($username, $password);
+				// echo $this->db->last_query();
 
 				if($user_id){
 
 					$user_data = array(
-						'user_id'  => $user_id,
+						'id'  => $user_id['id'],
 						'username'  => $username,
+						'user_level' => $user_id['user_level'],
 						'logged_in' => true
 					);
 

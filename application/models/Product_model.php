@@ -17,6 +17,7 @@
         public function create_product(){
 
             $data = array(
+				'user_id' => $this->session->userdata('id'),
 				'product' => $this->input->post('product'),
 				'custodian' => $this->input->post('custodian'),
 				'location' => $this->input->post('location'),
@@ -25,6 +26,7 @@
 				'serial_no' => $this->input->post('serial_no'),
                 'new_custodian' => 'N/A',
                 'date_product' => $this->input->post('date_product')
+				
 			);
 
 			return $this->db->insert('products', $data);

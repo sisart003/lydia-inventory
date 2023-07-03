@@ -15,6 +15,13 @@ class Products extends CI_Controller {
 
     public function create(){
 
+        // Check login
+			if(!$this->session->userdata('logged_in')){
+                // Set message
+                $this->session->set_flashdata('must_login', 'You must Login First');
+				redirect('login');
+			}
+
         $data['title'] = "Create Product";
 
 		$this->form_validation->set_rules('product', 'Product', 'required');
@@ -44,6 +51,13 @@ class Products extends CI_Controller {
 
     public function edit($id){
 
+        // Check login
+			if(!$this->session->userdata('logged_in')){
+                // Set message
+                $this->session->set_flashdata('must_login', 'You must Login First');
+				redirect('login');
+			}
+
         $data['product'] = $this->product_model->edit_product($id);
 
         if(empty($data['product'])){
@@ -59,6 +73,13 @@ class Products extends CI_Controller {
 
     public function update(){
 
+        // Check login
+			if(!$this->session->userdata('logged_in')){
+                // Set message
+                $this->session->set_flashdata('must_login', 'You must Login First');
+				redirect('login');
+			}
+
         $this->product_model->update_post();
 
         // Set message
@@ -68,6 +89,13 @@ class Products extends CI_Controller {
     }
 
     public function delete($id){
+
+        // Check login
+			if(!$this->session->userdata('logged_in')){
+                // Set message
+                $this->session->set_flashdata('must_login', 'You must Login First');
+				redirect('login');
+			}
 
         $this->product_model->delete_product($id);
 
