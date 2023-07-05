@@ -1,4 +1,7 @@
         
+      <?php if($this->session->userdata('logged_in')) : ?>
+      <a href="<?php echo base_url();?>create" class="btn btn-primary mb-4 float-end text-light"><i class="fa-solid fa-plus"></i> Create Product</a>
+      <?php endif; ?>
             <table class="table table-striped table-bordered table-hover" id="myTable">
                 <thead>
                     <tr>

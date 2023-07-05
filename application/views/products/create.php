@@ -1,3 +1,4 @@
+<div class="container">
 <h1 class="mb-5"><?= $title; ?></h1>
 <?php echo form_open('products/create'); ?>
 <div class="row">
@@ -56,3 +57,4 @@
        
 </div>
 </form>
+</div>

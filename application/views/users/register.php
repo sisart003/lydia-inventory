@@ -3,7 +3,7 @@
                 <div class="col-md-4"></div>
                 
                 <div class="col-md-4">
-                <h2 class="mb-5 text-center"><?= $title; ?></h2>
+                <h2 class="mb-2 text-center"><?= $title; ?></h2>
                 <?php echo validation_errors(); ?>
                 <?php echo form_open('users/register'); ?>
                     <div class="mb-3">
@@ -18,9 +18,8 @@
 
                     <div class="mb-3">
                         <select class="form-select" name="user_level" aria-label="Default select example">
-                            <option selected disabled>User Level</option>
+                            <option selected disabled>Role</option>
                             <option value="administrator">Admin</option>
-                            <option value="moderator">Moderator</option>
                             <option value="user">User</option>
                           </select>
                     </div>
@@ -34,7 +33,10 @@
                         <label for="passwordConfirm" class="form-label">Confirmation</label>
                         <input class="form-control" type="password" id="passwordConfirm" placeholder="Confirm Password" name="confpassword">
                     </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <p class="text-center text-muted mb-0">Have already an account? <a href="<?= base_url() ?>/login"
+                    class="text-primary"><u>Login here</u></a></p>
+                
+                    <button type="submit" class="btn btn-primary float-center">Register</button>
                     
                 </div>
                 </form>

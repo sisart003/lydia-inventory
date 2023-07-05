@@ -9,28 +9,28 @@
         <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
       </head>
     <body>
-    <nav class="navbar navbar-expand-lg bg-primary">
-  <div class="container-fluid">
+
+<nav class="navbar navbar-expand-lg bg-primary">
+  <div class="container d-flex">
     <a class="navbar-brand text-light" href="<?= base_url(); ?>">Inventory</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-        <?php if($this->session->userdata('logged_in')) : ?>
-            <p class="nav-link text-light"><?= ucfirst($this->session->userdata('user_level')); ?></p>
-            <?php endif; ?>
-        </li>
-        <?php if($this->session->userdata('logged_in')) : ?>
-        <li class="nav-item">
-          <a class="nav-link  text-light" href="<?= base_url(); ?>users/logout">Logout</a>
-        </li>
-        <?php endif; ?>
+    
+    <div class="dropdown">
+    <?php if($this->session->userdata('logged_in')) : ?>
+      <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <?= ucfirst($this->session->userdata('user_level')); ?>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="<?php echo base_url() ?>users/logout">Logout</a></li>
       </ul>
-      <?php if($this->session->userdata('logged_in')) : ?>
-      <a href="<?php echo base_url();?>create" class="btn btn-light me-5 text-primary"><i class="fa-solid fa-plus"></i> Create Product</a>
-      <?php endif; ?>
+    
+    <?php endif; ?>
+    <?php if(!$this->session->userdata('logged_in')) : ?>
+    <a href="<?= base_url() ?>login" class="btn btn-outline-light">Login</a>
+    <a href="<?= base_url() ?>signup" class="btn btn-outline-light">Register</a>
+    <?php endif; ?>
     </div>
   </div>
 </nav>
