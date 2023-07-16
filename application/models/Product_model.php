@@ -17,16 +17,16 @@
         public function create_product(){
 
             $data = array(
-				'user_id' => $this->session->userdata('id'),
-				'product' => $this->input->post('product'),
 				'custodian' => $this->input->post('custodian'),
+				'new_custodian' => $this->input->post('new_custodian'),
+				'product_desc' => $this->input->post('product_desc'),
 				'location' => $this->input->post('location'),
-                'cost' => $this->input->post('cost'),
 				'property_no' => $this->input->post('property_no'),
 				'serial_no' => $this->input->post('serial_no'),
-                'new_custodian' => 'N/A',
-                'date_product' => $this->input->post('date_product')
-				
+				'atn_no' => $this->input->post('atn_no'),
+				'date' => $this->input->post('prod_date'),
+				'cost' => $this->input->post('cost'),
+				'remarks' => $this->input->post('remarks')
 			);
 
 			return $this->db->insert('products', $data);
@@ -45,12 +45,16 @@
         public function update_post(){
 
 			$data = array(
-				'product' => $this->input->post('product'),
-                'location' => $this->input->post('location'),
-                'cost' => $this->input->post('cost'),
-                'property_no' => $this->input->post('property_no'),
-                'serial_no' => $this->input->post('serial_no'),
-                'new_custodian' => $this->input->post('new_custodian')
+				'custodian' => $this->input->post('custodian'),
+				'new_custodian' => $this->input->post('new_custodian'),
+				'product_desc' => $this->input->post('product_desc'),
+				'location' => $this->input->post('location'),
+				'property_no' => $this->input->post('property_no'),
+				'serial_no' => $this->input->post('serial_no'),
+				'atn_no' => $this->input->post('atn_no'),
+				'date' => $this->input->post('prod_date'),
+				'cost' => $this->input->post('cost'),
+				'remarks' => $this->input->post('remarks')
 			);
 
 			$this->db->where('id', $this->input->post('id'));
