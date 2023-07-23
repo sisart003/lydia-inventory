@@ -17,6 +17,7 @@ class Employees extends CI_Controller {
 			}
 
 			$data['title'] = 'Register Employee';
+			$employee_id_generate = rand(100000, 999999);
 
 			$this->form_validation->set_rules('email', 'Email', 'required|callback_check_email_exists');
 			$this->form_validation->set_rules('contact', 'Contact', 'required|callback_check_contact_exists');
@@ -55,12 +56,12 @@ class Employees extends CI_Controller {
 				// Encrypt password
 				$enc_password = md5($this->input->post('password'));
 
-				$this->employee_model->register($post_image, $enc_password);
+				$this->employee_model->register($post_image, $enc_password, $employee_id_generate);
 
 				// Set message
 				$this->session->set_flashdata('employee_registered', 'Successfully Registered');
 
-				redirect(base_url());
+				redirect(base_url().'employees/single-employee/'.$employee_id_generate);
 			}
 		}
 

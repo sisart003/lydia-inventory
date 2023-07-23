@@ -2,9 +2,9 @@
 
 	class Employee_model extends CI_Model{
 
-        public function register($post_image, $enc_password){
+        public function register($post_image, $enc_password, $employee_id_generate){
 
-			$employee_id_generate = rand(100000, 999999);
+			
 
 			// User data array
 			$data = array(

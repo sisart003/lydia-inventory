@@ -6,6 +6,7 @@
                     <div class="card mx-auto col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
                     <h3 class="card-header">Employee Registration Form</h3>
                     <div class="card-body">
+					<?php echo validation_errors(); ?>
                         <form action="register" method="post" class="needs-validation" novalidate enctype="multipart/form-data">
                             <div class="form-row">
                                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-4">
