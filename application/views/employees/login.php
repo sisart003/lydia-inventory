@@ -44,7 +44,7 @@
                 <?php echo validation_errors(); ?>
                     <?php echo form_open('employees/login'); ?>
                     <div class="form-group">
-                        <input class="form-control form-control-lg" id="employee_id" type="text" name="employee_id" placeholder="Employee ID" autocomplete="off">
+                        <input class="form-control form-control-lg" id="email" type="email" name="email" placeholder="Email" autocomplete="off">
                     </div>
                     <div class="form-group">
                         <input class="form-control form-control-lg" id="password" type="password" name="password" placeholder="Password">

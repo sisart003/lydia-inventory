@@ -98,7 +98,7 @@
 
             <?php if($this->session->flashdata('employee_updated')): ?>
                 <div class="card-body border-top">
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <?php echo $this->session->flashdata('employee_updated'); ?>
                         <a href="#" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">×</span>

@@ -24,11 +24,9 @@
                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
                         <div class="card">
                             <img class="card-img-top img-fluid p-2" src="<?= base_url() ?>assets/images/<?= $employee['employee_picture']; ?>" alt="Card image cap">
-                            <div class="card-body">
-                            <h3 class="mb-2"><small style="color: gray; font-size: 14px;">Employee ID </small><?= $employee['employee_id']; ?></h3>
-                                <h3 class="card-title"><?= ucfirst($employee['first_name']) . ' ' . ucfirst($employee['last_name']); ?></h3>
+                            <div class="card-body"><h3 class="card-title"><?= ucfirst($employee['first_name']) . ' ' . ucfirst($employee['last_name']); ?></h3>
                                 <p> <?php echo ($employee['role'] == 1) ? "Administrator" : "Employee" ?></p>
-                                <a href="<?= base_url() ?>employees/single-employee/<?= $employee['employee_id']; ?>" class="btn btn-primary"><i class="fa-solid fa-eye"></i> Employee Information</a>
+                                <a href="<?= base_url() ?>employees/single-employee/<?= $employee['id'];?>" class="text-primary"><i class="fa-solid fa-eye"></i> Employee Information</a>
                             </div>
                         </div>
                     </div>

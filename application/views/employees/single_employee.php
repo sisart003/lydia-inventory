@@ -9,8 +9,8 @@
               <img src="<?= base_url(); ?>assets/images/<?= $employee['employee_picture'] ?>"
                 class="rounded-circle img-fluid" style="width: 100px;" />
             </div>
-            <h3 class="mb-2"><small style="color: gray">Employee ID </small><br><?= $employee['employee_id']; ?></h3>
             <h4 class="mb-2"><?= ucfirst($employee['first_name']).' '.ucfirst($employee['last_name']); ?></h4>
+            <h3><?= $employee['email']; ?></h3>
             <p class="text-muted mb-4"><?= ($employee['role'] == 1) ? "Administrator" : "Employee" ?></p>
             
             <a class="btn btn-primary text-light btn-rounded btn-lg" href="<?= base_url(); ?>employees/edit_employee/<?= $employee['id']; ?>">

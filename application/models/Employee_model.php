@@ -2,13 +2,12 @@
 
 	class Employee_model extends CI_Model{
 
-        public function register($post_image, $enc_password, $employee_id_generate){
+        public function register($post_image, $enc_password){
 
 			
 
 			// User data array
 			$data = array(
-				'employee_id' => $employee_id_generate,
                 'first_name' => $this->input->post('first_name'),
 				'last_name' => $this->input->post('last_name'),
 				'email' => $this->input->post('email'),
@@ -54,21 +53,21 @@
 		}
 
 		// Get Single Employee
-		public function single_employee($employee_id = FALSE){
+		public function single_employee($id = FALSE){
 
-			if($employee_id === FALSE){
+			if($id === FALSE){
 				$query = $this->db->get('employees');
 				return $query->result_array();
 			}
 
-			$query = $this->db->get_where('employees', array('employee_id' => $employee_id));
+			$query = $this->db->get_where('employees', array('id' => $id));
 			return $query->row_array();
 		}
 
         // Log user in
-		public function login($employee_id, $password){
+		public function login($email, $password){
 			// Validate
-			$this->db->where('employee_id', $employee_id);
+			$this->db->where('email', $email);
 			$this->db->where('password', $password);
 
 			$result = $this->db->get('employees');

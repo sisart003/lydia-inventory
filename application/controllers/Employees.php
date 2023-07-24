@@ -17,7 +17,6 @@ class Employees extends CI_Controller {
 			}
 
 			$data['title'] = 'Register Employee';
-			$employee_id_generate = rand(100000, 999999);
 
 			$this->form_validation->set_rules('email', 'Email', 'required|callback_check_email_exists');
 			$this->form_validation->set_rules('contact', 'Contact', 'required|callback_check_contact_exists');
@@ -56,12 +55,12 @@ class Employees extends CI_Controller {
 				// Encrypt password
 				$enc_password = md5($this->input->post('password'));
 
-				$this->employee_model->register($post_image, $enc_password, $employee_id_generate);
+				$this->employee_model->register($post_image, $enc_password);
 
 				// Set message
 				$this->session->set_flashdata('employee_registered', 'Successfully Registered');
 
-				redirect(base_url().'employees/single-employee/'.$employee_id_generate);
+				redirect(base_url().'employees/view_all_employees');
 			}
 		}
 
@@ -87,7 +86,7 @@ class Employees extends CI_Controller {
 		public function login(){
 			$data['title'] = 'PMS Inventory Portal';
 
-			$this->form_validation->set_rules('employee_id', 'Employee ID', 'required');
+			$this->form_validation->set_rules('email', 'Email', 'required');
 			$this->form_validation->set_rules('password', 'Password', 'required');
 
 			if($this->form_validation->run() === FALSE){
@@ -95,22 +94,21 @@ class Employees extends CI_Controller {
 			} else {
 				
 				// Get username
-				$employee_id = $this->input->post('employee_id');
+				$email = $this->input->post('email');
 				// Get and encrypt the password
 				$password = md5($this->input->post('password'));
 
 				// Login user
-				$employee = $this->employee_model->login($employee_id, $password);
+				$employee = $this->employee_model->login($email, $password);
 				// echo $this->db->last_query();
 
 				if($employee){
 
 					$employee_data = array(
 						'id'  => $employee['id'],
-						'employee_id'  => $employee_id,
 						'first_name' => $employee['first_name'],
 						'last_name' => $employee['last_name'],
-						'email' => $employee['email'],
+						'email' => $email,
 						'contact' => $employee['contact'],
 						'role' => $employee['role'],
 						'employee_picture' => $employee['employee_picture'],
@@ -156,7 +154,7 @@ class Employees extends CI_Controller {
 		}
 
 		// View Single Employee
-		public function view_single_employee($employee_id = NULL)
+		public function view_single_employee($id = NULL)
 		{
 			// Check login
 			if(!$this->session->userdata('logged_in')){
@@ -170,7 +168,7 @@ class Employees extends CI_Controller {
 			}
 			$data['title'] = 'Employee';
 
-			$data['employee'] = $this->employee_model->single_employee($employee_id);
+			$data['employee'] = $this->employee_model->single_employee($id);
 
 			$this->load->view('templates/header', $data);
 			$this->load->view('templates/navbar');
@@ -206,13 +204,6 @@ class Employees extends CI_Controller {
 
 			if(!$this->session->userdata('role') == 1){
 				redirect(base_url());
-			}
-
-			// Check login
-			if(!$this->session->userdata('logged_in')){
-                // Set message
-                $this->session->set_flashdata('must_login', 'You must be an Admin');
-				redirect('login');
 			}
         	$data['employee'] = $this->employee_model->edit_employee($id);
 
