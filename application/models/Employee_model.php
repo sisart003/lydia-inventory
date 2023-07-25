@@ -99,4 +99,29 @@
 			return $this->db->update('employees', $data);
 		}
 
+		public function delete_employee($id){
+
+			$this->db->where('id', $id);
+			$this->db->delete('employees');
+
+			return true;
+		}
+
+		public function change_password($id){
+			$query = $this->db->get_where('employees', array('id' => $id));
+			return $query->row_array();
+		}
+
+		public function update_password(){
+
+			$enc_pass = md5($this->input->post('new_pass'));
+			
+			$data = array(
+				'password' => $enc_pass
+			);
+
+			$this->db->where('id', $this->input->post('id'));
+			return $this->db->update('employees', $data);
+		}
+
     }

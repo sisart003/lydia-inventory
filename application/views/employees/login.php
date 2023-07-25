@@ -38,6 +38,12 @@
             <p><?php echo $this->session->flashdata('employee_logout'); ?></p>
           </div>  
         <?php endif; ?>
+
+        <?php if($this->session->flashdata('loggedin_failed')): ?>
+          <div class="alert alert-danger">
+            <p><?php echo $this->session->flashdata('loggedin_failed'); ?></p>
+          </div>  
+        <?php endif; ?>
         <div class="card ">
             <div class="card-header text-center"><a href="<?= base_url(); ?>"><img class="logo-img" src="<?= base_url(); ?>assets/images/psa.png" alt="logo"></a><span class="splash-description"><?= $title; ?></span></div>
             <div class="card-body">

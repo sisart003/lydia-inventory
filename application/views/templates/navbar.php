@@ -106,3 +106,14 @@
                     </div>
                 </div>
             <?php endif; ?>
+
+            <?php if($this->session->flashdata('password_reset')): ?>
+                <div class="card-body border-top">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <?php echo $this->session->flashdata('password_reset'); ?>
+                        <a href="#" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </a>
+                    </div>
+                </div>
+            <?php endif; ?>
