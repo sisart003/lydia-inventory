@@ -123,7 +123,7 @@ class Employees extends CI_Controller {
 					redirect(base_url());
 				} else {
 					// Set message
-					$this->session->set_flashdata('login_failed', 'Login is invalid');
+					$this->session->set_flashdata('loggedin_failed', 'Invalid Email or Password');
 
 					redirect('login');
 				}		
@@ -233,6 +233,90 @@ class Employees extends CI_Controller {
 	
 			// Set message
 			$this->session->set_flashdata('employee_updated', 'Employee has been Updated');
+	
+			redirect('employees/view_all_employees');
+		}
+
+		public function delete_confirmation($id = NULL){
+
+			// Check login
+			if(!$this->session->userdata('logged_in')){
+                // Set message
+                $this->session->set_flashdata('must_login', 'You must be an Admin');
+				redirect('login');
+			}
+
+			if(!$this->session->userdata('role') == 1){
+				redirect(base_url());
+			}
+
+			$data['employee'] = $this->employee_model->single_employee($id);
+
+			$data['title'] = 'Confirm Delete';
+
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/navbar');
+			$this->load->view('employees/delete_confirmation', $data);
+			$this->load->view('templates/footer');
+		}
+
+		public function delete_employee($id){
+
+			// Check login
+				if(!$this->session->userdata('logged_in')){
+					// Set message
+					$this->session->set_flashdata('must_login', 'You must Login First');
+					redirect('login');
+				}
+	
+			$this->employee_model->delete_employee($id);
+	
+			// Set message
+			$this->session->set_flashdata('employee_deleted', 'Employee has been Deleted');
+	
+			redirect('employees/view_all_employees');
+		}
+
+		public function manage_password($id){
+
+			// Check login
+			if(!$this->session->userdata('logged_in')){
+                // Set message
+                $this->session->set_flashdata('must_login', 'You must be an Admin');
+				redirect('login');
+			}
+
+			if(!$this->session->userdata('role') == 1){
+				redirect(base_url());
+			}
+
+        	$data['employee'] = $this->employee_model->change_password($id);
+			
+			$data['title'] = "Password Manager";
+
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/navbar');
+			$this->load->view('employees/manage_password', $data);
+			$this->load->view('templates/footer');
+
+		}
+
+		public function update_password(){
+			// Check login
+			if(!$this->session->userdata('logged_in')){
+                // Set message
+                $this->session->set_flashdata('must_login', 'You must be an Admin');
+				redirect('login');
+			}
+
+			if(!$this->session->userdata('role') == 1){
+				redirect(base_url());
+			}
+	
+			$this->employee_model->update_password();
+	
+			// Set message
+			$this->session->set_flashdata('password_reset', 'Employee Password has been Updated');
 	
 			redirect('employees/view_all_employees');
 		}
